@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block c %}
+<div class="row justify-content-center"><div class="col-md-5"><div class="card p-4"><h5>🏥 Patient Sign Up</h5><form method="post" class="row g-2 mt-1">
+<div class="col-12"><input class="form-control" name="name" placeholder="Full name" required></div><div class="col-4"><input class="form-control" type="number" name="age" placeholder="Age" required></div>
+<div class="col-4"><select class="form-select" name="gender"><option>Male</option><option>Female</option><option>Other</option></select></div><div class="col-4"><select class="form-select" name="blood">{% for b in ['A+','A-','B+','B-','O+','O-','AB+','AB-'] %}<option>{{ b }}</option>{% endfor %}</select></div>
+<div class="col-12"><input class="form-control" name="phone" placeholder="Phone" required></div><div class="col-6"><input class="form-control" name="username" placeholder="Username" required></div><div class="col-6"><input class="form-control" type="password" name="password" placeholder="Password (6+)" required></div>
+<div class="col-12"><button class="btn btn-success w-100">Create Account</button></div></form><div class="small mt-3"><a href="/login">Back to login</a></div></div></div></div>{% endblock %}

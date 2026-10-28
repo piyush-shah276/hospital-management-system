@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block c %}
+<div class="card p-3 mb-3"><form class="row g-2" method="get"><div class="col"><input class="form-control" name="s" placeholder="Search by name or phone" value="{{ request.args.get('s','') }}"></div><div class="col-auto"><button class="btn btn-outline-success">Search</button></div></form></div>
+{% if session.role in ('admin','receptionist') %}<div class="card p-3 mb-3"><h6>➕ Register Patient</h6><form method="post" class="row g-2">
+<div class="col-md-3"><input class="form-control" name="name" placeholder="Full name" required></div><div class="col-md-1"><input class="form-control" type="number" name="age" placeholder="Age" required></div>
+<div class="col-md-2"><select class="form-select" name="gender"><option>Male</option><option>Female</option><option>Other</option></select></div><div class="col-md-2"><input class="form-control" name="phone" placeholder="Phone" required></div>
+<div class="col-md-2"><select class="form-select" name="blood">{% for b in ['A+','A-','B+','B-','O+','O-','AB+','AB-'] %}<option>{{ b }}</option>{% endfor %}</select></div><div class="col-md-2"><button class="btn btn-success w-100">Register</button></div></form></div>{% endif %}
+<div class="card p-3"><table class="table table-hover mb-0"><tr><th>ID</th><th>Name</th><th>Age</th><th>Gender</th><th>Phone</th><th>Blood</th></tr>
+{% for r in rows %}<tr><td>{{ r.id }}</td><td><a href="/patient/{{ r.id }}">{{ r.name }}</a></td><td>{{ r.age }}</td><td>{{ r.gender }}</td><td>{{ r.phone }}</td><td>{{ r.blood }}</td></tr>{% endfor %}</table></div>{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block c %}
+<div class="row justify-content-center"><div class="col-md-5"><div class="card p-4"><h5>✏️ Edit Patient Details</h5><form method="post" class="row g-2 mt-1">
+<div class="col-12"><label class="small">Full name</label><input class="form-control" name="name" value="{{ p.name }}" required></div>
+<div class="col-4"><label class="small">Age</label><input class="form-control" type="number" name="age" value="{{ p.age }}" required></div>
+<div class="col-4"><label class="small">Gender</label><select class="form-select" name="gender">{% for g in ['Male','Female','Other'] %}<option {{ 'selected' if g == p.gender }}>{{ g }}</option>{% endfor %}</select></div>
+<div class="col-4"><label class="small">Blood group</label><select class="form-select" name="blood">{% for b in ['A+','A-','B+','B-','O+','O-','AB+','AB-'] %}<option {{ 'selected' if b == p.blood }}>{{ b }}</option>{% endfor %}</select></div>
+<div class="col-12"><label class="small">Phone</label><input class="form-control" name="phone" value="{{ p.phone }}" required></div>
+<div class="col-6"><button class="btn btn-success w-100">Save Changes</button></div><div class="col-6"><a class="btn btn-outline-secondary w-100" href="/patient/{{ p.id }}">Cancel</a></div></form></div></div></div>{% endblock %}

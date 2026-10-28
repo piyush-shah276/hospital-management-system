@@ -1,0 +1,86 @@
+{
+ "diabetes": {
+  "source": "demo (synthetic) data",
+  "best": "Logistic Regression",
+  "models": {
+   "Logistic Regression": [
+    71.3,
+    73.5,
+    75.3
+   ],
+   "Decision Tree": [
+    67.7,
+    70.2,
+    72.3
+   ],
+   "Random Forest": [
+    68.0,
+    70.6,
+    72.3
+   ]
+  }
+ },
+ "heart": {
+  "source": "demo (synthetic) data",
+  "best": "Random Forest",
+  "models": {
+   "Logistic Regression": [
+    71.0,
+    74.8,
+    82.9
+   ],
+   "Decision Tree": [
+    66.7,
+    71.6,
+    79.8
+   ],
+   "Random Forest": [
+    71.7,
+    74.1,
+    86.0
+   ]
+  }
+ },
+ "liver": {
+  "source": "demo (synthetic) data",
+  "best": "Logistic Regression",
+  "models": {
+   "Logistic Regression": [
+    65.3,
+    60.4,
+    46.8
+   ],
+   "Decision Tree": [
+    58.7,
+    50.0,
+    28.2
+   ],
+   "Random Forest": [
+    62.0,
+    55.0,
+    44.4
+   ]
+  }
+ },
+ "hypertension": {
+  "source": "demo (synthetic) data",
+  "best": "Logistic Regression",
+  "models": {
+   "Logistic Regression": [
+    74.3,
+    72.9,
+    70.3
+   ],
+   "Decision Tree": [
+    64.3,
+    67.0,
+    44.2
+   ],
+   "Random Forest": [
+    71.3,
+    70.6,
+    64.5
+   ]
+  }
+ }
+}

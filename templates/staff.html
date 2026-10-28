@@ -1,0 +1,16 @@
+{% extends 'base.html' %}{% block c %}
+<div class="row g-3 mb-3"><div class="col-md-3"><div class="card p-3 text-center"><div class="stat">{{ tot.n }}</div><div class="text-muted small">Active Staff</div></div></div>
+<div class="col-md-3"><div class="card p-3 text-center"><div class="stat">Rs {{ '{:,.0f}'.format(tot.s) }}</div><div class="text-muted small">Monthly Payroll</div></div></div>
+<div class="col-md-6"><div class="card p-3"><table class="table table-sm mb-0"><tr><th>Post</th><th>Count</th><th>Total Salary</th><th>Avg Salary</th></tr>{% for s in summ %}<tr><td>{{ s.post }}</td><td>{{ s.n }}</td><td>Rs {{ '{:,.0f}'.format(s.total) }}</td><td>Rs {{ '{:,.0f}'.format(s.avg) }}</td></tr>{% endfor %}</table></div></div></div>
+<div class="card p-3 mb-3"><h6>➕ Add Staff (Doctor / Nurse / Other)</h6><form method="post" class="row g-2"><input type="hidden" name="action" value="add">
+<div class="col-md-3"><input class="form-control" name="name" placeholder="Full name" required></div><div class="col-md-2"><select class="form-select" name="post">{% for p in posts %}<option>{{ p }}</option>{% endfor %}</select></div>
+<div class="col-md-2"><input class="form-control" name="dept" placeholder="Department" required></div><div class="col-md-2"><input class="form-control" type="number" step="any" name="salary" placeholder="Salary / month" required></div>
+<div class="col-md-1"><input class="form-control" name="phone" placeholder="Phone"></div><div class="col-md-1"><input class="form-control" type="date" name="joined" value="{{ today }}"></div><div class="col-md-1"><button class="btn btn-success w-100">Add</button></div></form></div>
+<div class="card p-3 mb-3"><form method="get" class="row g-2"><div class="col-md-5"><input class="form-control" name="s" value="{{ s }}" placeholder="🔍 Search by name, department or phone"></div>
+<div class="col-md-3"><select class="form-select" name="post"><option value="">All posts</option>{% for p in posts %}<option {{ 'selected' if p == post }}>{{ p }}</option>{% endfor %}</select></div>
+<div class="col-md-2"><button class="btn btn-success w-100">Search</button></div><div class="col-md-2"><a class="btn btn-outline-secondary w-100" href="/staff">Reset</a></div></form>
+<div class="small text-muted mt-2">{{ rows|length }} result(s)</div></div>
+<div class="card p-3"><table class="table table-sm align-middle mb-0"><tr><th>Name</th><th>Post</th><th>Department</th><th>Phone</th><th>Joined</th><th>Salary (Rs)</th><th>Status</th><th></th></tr>
+{% for r in rows %}<tr><form method="post"><input type="hidden" name="id" value="{{ r.id }}"><td>{{ r.name }}</td><td>{{ r.post }}</td><td>{{ r.department }}</td><td>{{ r.phone }}</td><td>{{ r.joined }}</td>
+<td><input class="form-control form-control-sm" style="width:110px" type="number" step="any" name="salary" value="{{ '%.0f'|format(r.salary) }}"></td>
+<td><select class="form-select form-select-sm" name="status"><option {{ 'selected' if r.status == 'Active' }}>Active</option><option {{ 'selected' if r.status == 'Left' }}>Left</option></select></td><td><button class="btn btn-sm btn-outline-success">Save</button></td></form></tr>{% endfor %}</table></div>{% endblock %}

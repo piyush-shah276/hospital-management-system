@@ -1,0 +1,9 @@
+{% extends 'base.html' %}{% block c %}
+{% if session.role in ('admin','receptionist') %}<div class="card p-3 mb-3"><h6>➕ Schedule Appointment</h6><form method="post" class="row g-2">
+<div class="col-md-3"><select class="form-select" name="patient_id">{% for p in pts %}<option value="{{ p.id }}">{{ p.name }}</option>{% endfor %}</select></div>
+<div class="col-md-3"><select class="form-select" name="doctor_id">{% for d in docs %}<option value="{{ d.id }}">{{ d.name }} ({{ d.dept }})</option>{% endfor %}</select></div>
+<div class="col-md-2"><input class="form-control" type="date" name="date" value="{{ today }}" required></div><div class="col-md-1"><input class="form-control" type="time" name="time" required></div>
+<div class="col-md-2"><input class="form-control" name="reason" placeholder="Reason"></div><div class="col-md-1"><button class="btn btn-success w-100">Book</button></div></form></div>{% endif %}
+<div class="card p-3"><table class="table mb-0"><tr><th>Date</th><th>Time</th><th>Patient</th><th>Doctor</th><th>Reason</th><th>Status</th><th></th></tr>
+{% for r in rows %}<tr><td>{{ r.date }}</td><td>{{ r.time }}</td><td><a href="/patient/{{ r.patient_id }}">{{ r.pname }}</a></td><td>{{ r.dname }}</td><td>{{ r.reason }}</td><td>{{ r.status }}</td>
+<td>{% if r.status == 'Scheduled' and session.role in ('admin','doctor') %}<a class="btn btn-sm btn-outline-success" href="/appt/{{ r.id }}/done">Done</a>{% endif %}</td></tr>{% endfor %}</table></div>{% endblock %}

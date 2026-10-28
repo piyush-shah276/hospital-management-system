@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block c %}
+<div class="row justify-content-center"><div class="col-md-4"><div class="card p-4 mt-5"><div class="text-center mb-2"><img src="/static/logo.svg" height="70" alt="logo"></div><h4 class="mb-1 text-center">{{ hospital }}</h4><p class="text-muted small">Hospital Management & Disease Prediction System</p>
+<form method="post"><input class="form-control mb-2" name="username" placeholder="Username" required><input class="form-control mb-3" type="password" name="password" placeholder="Password" required>
+<button class="btn btn-success w-100">Login</button></form>
+<div class="small mt-3">New patient? <a href="/signup">Create your account</a></div><div class="small text-muted mt-2">Demo: admin/admin123 · doctor1/doctor123 · recep1/recep123</div></div></div></div>{% endblock %}
